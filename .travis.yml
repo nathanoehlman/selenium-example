@@ -3,30 +3,33 @@ language: node_js
 node_js:
     - '0.10'
 
-before_install:
-    - echo "$(date +%H:%M:%S.%N) - before_install begin"
-    - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-    - java -jar selenium-server-standalone-2.39.0.jar &
-    - sleep 10
-    - echo "$(date +%H:%M:%S.%N) - before_install end"
+# before_install:
+#     - echo "$(date +%H:%M:%S.%N) - before_install begin"
+#     - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+#     - java -jar selenium-server-standalone-2.39.0.jar &
+#     - sleep 10
+#     - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 before_script:
     #- sudo npm install - is automatically executed when install is missing
     - node app.js &
 
-script:
-    - echo "$(date +%H:%M:%S.%N) - script begin"
-    - mocha --reporter min
+#script:
+#    - echo "$(date +%H:%M:%S.%N) - script begin"
+#    - mocha --reporter min
 
-#addons:
-#  sauce_connect: true
+addons:
+  sauce_connect: true
 
-#env:
-#  global:
-#    - secure: "OCd/NzEOCuD2p+BsYCr4TaUyKXdo3dmzwf2U5VdRQUXPK/TzzTx+HqOy46VxJ/reySYzGAXTF/Zxmu6289GdOzol3v6dIIGdq/g+62+0/SCtFK8IhaVJNRV1dC9ccN7q9oskzmmgEtjuvPAj0gDX0EhtOVWfogobCGvFITjJcgE="
-#    - secure: "J1slVeysWT4pntabPUVdOZnlOuOBO95GuRwR7s4GMPWOe8Wm0iWLC07Qr5DoeUK0A17vxsxv62IjzOQsoTARu7yxMjXnWWzit8nqDkOLCi/T6LjOTmDjvB6g0ohQ7Nw8oMWNqqN5HOzd7BpMXVC293+hWkDXvAX/+wIMtbV1gZQ="
+env:
+  global:
+    - secure: "OCd/NzEOCuD2p+BsYCr4TaUyKXdo3dmzwf2U5VdRQUXPK/TzzTx+HqOy46VxJ/reySYzGAXTF/Zxmu6289GdOzol3v6dIIGdq/g+62+0/SCtFK8IhaVJNRV1dC9ccN7q9oskzmmgEtjuvPAj0gDX0EhtOVWfogobCGvFITjJcgE="
+    - secure: "J1slVeysWT4pntabPUVdOZnlOuOBO95GuRwR7s4GMPWOe8Wm0iWLC07Qr5DoeUK0A17vxsxv62IjzOQsoTARu7yxMjXnWWzit8nqDkOLCi/T6LjOTmDjvB6g0ohQ7Nw8oMWNqqN5HOzd7BpMXVC293+hWkDXvAX/+wIMtbV1gZQ="
  
-#  matrix:
-#    - _BROWSER: "chrome"
-#      _PLATFORM: "Windows_8"
-#      _VERSION: "31"
+  matrix:
+    - _BROWSER: "chrome"
+      _PLATFORM: "Windows_8"
+      _VERSION: "31"
+    - _BROWSER: "firefox"
+      _PLATFORM: "Linux"
+      _VERSION: "25"
