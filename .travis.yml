@@ -12,7 +12,7 @@ before_install:
 
 before_script:
     #- sudo npm install - is automatically executed when install is missing
-    - node app.js
+    - node app.js &
 
 script:
     - echo "$(date +%H:%M:%S.%N) - script begin"
