@@ -16,7 +16,7 @@ before_script:
 
 #script:
 #    - echo "$(date +%H:%M:%S.%N) - script begin"
-#    - mocha --reporter min
+#    - mocha --reporter spec
 
 addons:
   sauce_connect: true

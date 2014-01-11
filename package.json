@@ -10,5 +10,8 @@
         "mocha": "*",
         "chai": "*",
         "webdriverjs": "*"
+    },
+    "scripts": {
+        "test": "mocha --reporter spec"
     }
 }
