@@ -4,33 +4,52 @@ var assert = require('chai').assert,
 var env = GLOBAL.env = {};
 var client = {};
 
+console.log('TRAVIS: %s', env.TRAVIS || 'no');
+console.log('SELENIUM_HOST: %s', env.SELENIUM_HOST || '-');
+console.log('SELENIUM_PORT: %s', env.SELENIUM_PORT || '-');
+
 if (env.TRAVIS) {
-    client = webdriverjs.remote({ desiredCapabilities: {
-                                        browserName: 'chrome',
-                                        version: '27',
-                                        platform: 'XP',
-                                        tags: ['examples'],
-                                        name: 'Run single page test using webdriverjs/Selenium.'
-                                    },
-                                    // for w/o sauce connect
-                                    //      host: 'ondemand.saucelabs.com',
-                                    //      port: 80,
-                                    // use with sauce connect:
-                                    host: 'localhost',
-                                    port: 4445,
-                                    user: env.SAUCE_USERNAME,
-                                    key: env.SAUCE_ACCESS_KEY,
-                                    logLevel: 'silent'
-                                });
+    var BROWSERNAME = env._BROWSER || env.BROWSER || 'chrome';
+    var BROWSERVERSION = env._VERSION || env.VERSION || '*';
+    var BROWSERPLATFORM = env._PLATFORM || env.PLATFORM || 'Linux';
+    console.log('BROWSERNAME: ' + BROWSERNAME);
+    console.log('BROWSERVERSION: ' + BROWSERVERSION);
+    console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
+
+    var options = { desiredCapabilities: {
+            browserName: 'chrome',
+            version: '27',
+            platform: 'XP',
+            tags: ['examples'],
+            name: 'Run single page test using webdriverjs/Selenium.'
+        },
+        // for w/o sauce connect
+        //      host: 'ondemand.saucelabs.com',
+        //      port: 80,
+        // use with sauce connect:
+        host: 'localhost',
+        port: 4445,
+        user: env.SAUCE_USERNAME,
+        key: env.SAUCE_ACCESS_KEY,
+        logLevel: 'silent'
+    };
 }
 else
 {
-    client = webdriverjs.remote({ desiredCapabilities: {browserName: 'chrome'} });
+    options = {
+        desiredCapabilities: {
+            browserName: 'chrome'
+        }
+    };
 }
 
 describe('Run single page test using webdriverjs/Selenium.', function() {
 
+    var client = {};
+
     before(function(done) {
+        client = webdriverjs.remote(options);
+
         // Add a helper command
         client.addCommand('hasText', function(selector, text, callback) {
             this.getText(selector, function(err, result) {

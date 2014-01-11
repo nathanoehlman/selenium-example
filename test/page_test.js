@@ -5,14 +5,17 @@ var assert = chai.assert, // TDD
 var env = GLOBAL.env = {}
 
 var options = {};
+console.log('TRAVIS: %s', env.TRAVIS || 'no');
+console.log('SELENIUM_HOST: %s', env.SELENIUM_HOST || '-');
+console.log('SELENIUM_PORT: %s', env.SELENIUM_PORT || '-');
+
 if (env.TRAVIS) {
     var BROWSERNAME = env._BROWSER || env.BROWSER || 'chrome';
     var BROWSERVERSION = env._VERSION || env.VERSION || '*';
     var BROWSERPLATFORM = env._PLATFORM || env.PLATFORM || 'Linux';
-    console.log('BROWSERNAME: ' + BROWSERNAME);
-    console.log('BROWSERVERSION: ' + BROWSERVERSION);
-    console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
-    console.log('SELENIUM_HOST: ' + env.SELENIUM_HOST);
+    console.log('BROWSERNAME: %s', BROWSERNAME || '-');
+    console.log('BROWSERVERSION: %s', BROWSERVERSION || '-');
+    console.log('BROWSERPLATFORM: %s', BROWSERPLATFORM || '-');
 
     var options = { desiredCapabilities: {
             browserName: BROWSERNAME,

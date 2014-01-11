@@ -12,6 +12,6 @@
         "webdriverjs": "*"
     },
     "scripts": {
-        "test": "mocha --reporter spec"
+        "test": "mocha --reporter spec test/simple_test.js test/page_test.js"
     }
 }
