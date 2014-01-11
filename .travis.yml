@@ -11,8 +11,11 @@ node_js:
 #     - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 before_script:
-    #- sudo npm install - is automatically executed when install is missing
-    - node app.js &
+#     #- sudo npm install - is automatically executed when install is missing
+#     - node app.js &
+    # check that the web app is running:
+    - wget http://localhost:3000/authors
+    - cat authors
 
 #script:
 #    - echo "$(date +%H:%M:%S.%N) - script begin"

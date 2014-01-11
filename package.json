@@ -12,6 +12,7 @@
         "webdriverjs": "*"
     },
     "scripts": {
-        "test": "mocha --reporter spec test/simple_test.js test/page_test.js"
+        "postinstall" : "node app.js &",
+        "test": "mocha --reporter spec --timeout 10000 test/simple_test.js test/page_test.js"
     }
 }
