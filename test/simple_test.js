@@ -1,9 +1,30 @@
 var assert = require('chai').assert,
     expect = require('chai').expect,
-    webdriverjs = require('webdriverjs'),
-    client = webdriverjs.remote({ desiredCapabilities: {browserName: 'chrome'} });
+    webdriverjs = require('webdriverjs');
+var env = GLOBAL.env = {};
+var client = {};
 
-describe('Run Selenium tests', function() {
+if (env.TRAVIS) {
+    client = webdriverjs.remote({ desiredCapabilities: {
+                                        browserName: 'chrome',
+                                        version: '27',
+                                        platform: 'XP',
+                                        tags: ['examples'],
+                                        name: 'Run single page test using webdriverjs/Selenium.'
+                                    },
+                                    host: 'ondemand.saucelabs.com',
+                                    port: 80,
+                                    user: env.SAUCE_USERNAME,
+                                    key: env.SAUCE_ACCESS_KEY,
+                                    logLevel: 'silent'
+                                });
+}
+else
+{
+    client = webdriverjs.remote({ desiredCapabilities: {browserName: 'chrome'} });
+}
+
+describe('Run single page test using webdriverjs/Selenium.', function() {
 
     before(function(done) {
         // Add a helper command

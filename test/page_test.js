@@ -2,13 +2,42 @@ var chai = require('chai');
 var assert = chai.assert, // TDD
     expect = chai.expect, // BDD
     webdriverjs = require('webdriverjs');
-var options = {
-    desiredCapabilities: {
-        browserName: 'chrome'
-    }
-};
+var env = GLOBAL.env = {}
 
-describe('Run some Selenium tests', function() {
+var options = {};
+if (env.TRAVIS) {
+    var BROWSERNAME = env._BROWSER || env.BROWSER || 'chrome';
+    var BROWSERVERSION = env._VERSION || env.VERSION || '*';
+    var BROWSERPLATFORM = env._PLATFORM || env.PLATFORM || 'Linux';
+    console.log('BROWSERNAME: ' + BROWSERNAME);
+    console.log('BROWSERVERSION: ' + BROWSERVERSION);
+    console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
+
+    var options = { desiredCapabilities: {
+            browserName: BROWSERNAME,
+            version: BROWSERVERSION,
+            platform: BROWSERPLATFORM,
+            tags: ['examples'],
+            name: 'Run web app test using webdriverjs/Selenium.'
+        },
+        host: 'ondemand.saucelabs.com',
+        port: 80,
+        user: env.SAUCE_USERNAME,
+        key: env.SAUCE_ACCESS_KEY,
+        logLevel: 'silent'
+    };
+}
+else
+{
+    options = {
+        desiredCapabilities: {
+            browserName: 'chrome'
+        }
+    };
+}
+
+
+describe('Run web app test using webdriverjs/Selenium.', function() {
 
     var client = {};
 
