@@ -12,6 +12,7 @@ if (env.TRAVIS) {
     console.log('BROWSERNAME: ' + BROWSERNAME);
     console.log('BROWSERVERSION: ' + BROWSERVERSION);
     console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
+    console.log('SELENIUM_HOST: ' + env.SELENIUM_HOST);
 
     var options = { desiredCapabilities: {
             browserName: BROWSERNAME,
@@ -20,8 +21,12 @@ if (env.TRAVIS) {
             tags: ['examples'],
             name: 'Run web app test using webdriverjs/Selenium.'
         },
-        host: 'ondemand.saucelabs.com',
-        port: 80,
+        // for w/o sauce connect
+        //      host: 'ondemand.saucelabs.com',
+        //      port: 80,
+        // use with sauce connect:
+        host: 'localhost',
+        port: 4445,
         user: env.SAUCE_USERNAME,
         key: env.SAUCE_ACCESS_KEY,
         logLevel: 'silent'

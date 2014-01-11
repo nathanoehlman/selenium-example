@@ -12,8 +12,12 @@ if (env.TRAVIS) {
                                         tags: ['examples'],
                                         name: 'Run single page test using webdriverjs/Selenium.'
                                     },
-                                    host: 'ondemand.saucelabs.com',
-                                    port: 80,
+                                    // for w/o sauce connect
+                                    //      host: 'ondemand.saucelabs.com',
+                                    //      port: 80,
+                                    // use with sauce connect:
+                                    host: 'localhost',
+                                    port: 4445,
                                     user: env.SAUCE_USERNAME,
                                     key: env.SAUCE_ACCESS_KEY,
                                     logLevel: 'silent'
