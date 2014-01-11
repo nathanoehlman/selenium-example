@@ -4,7 +4,7 @@ var assert = require('chai').assert,
 var env = GLOBAL.env = {};
 var client = {};
 
-console.log('USER: %s/%s', process.env.USER || '-', process.env.SAUCE_USERNAME | '-');
+console.log('USER: %s', process.env.USER || '-');
 console.log('TRAVIS: %s', process.env.TRAVIS || 'no');
 
 if (process.env.TRAVIS) {
@@ -47,6 +47,7 @@ describe('Run a simple test using webdriverjs/Selenium.', function() {
     var client = {};
 
     before(function(done) {
+        this.timeout(10000);
         client = webdriverjs.remote(options);
 
         // Add a helper command

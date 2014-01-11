@@ -43,6 +43,7 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
 
     before(function(done) {
         // console.log('--before--');
+        this.timeout(10000);
 
         //client = webdriverjs.remote({ desiredCapabilities: {browserName: 'phantomjs'} });
         client = webdriverjs.remote(options);
