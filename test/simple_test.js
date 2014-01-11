@@ -4,10 +4,8 @@ var assert = require('chai').assert,
 var env = GLOBAL.env = {};
 var client = {};
 
-console.log('USER: %s', process.env.USER || '-');
+console.log('USER: %s/%s', process.env.USER || '-', process.env.SAUCE_USERNAME | '-');
 console.log('TRAVIS: %s', process.env.TRAVIS || 'no');
-console.log('SELENIUM_HOST: %s', process.env.SELENIUM_HOST || '-');
-console.log('SELENIUM_PORT: %s', process.env.SELENIUM_PORT || '-');
 
 if (process.env.TRAVIS) {
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
@@ -18,13 +16,13 @@ if (process.env.TRAVIS) {
     console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
 
     var options = { desiredCapabilities: {
+            username: process.env.SAUCE_USERNAME,
+            access-key: process.env.SAUCE_ACCESS_KEY,
             browserName: BROWSERNAME,
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
             name: 'Run single page test using webdriverjs/Selenium.',
-            user: env.SAUCE_USERNAME,
-            key: env.SAUCE_ACCESS_KEY,
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -32,6 +30,8 @@ if (process.env.TRAVIS) {
         // use with sauce connect:
         host: 'localhost',
         port: 4445,
+        user: process.env.SAUCE_USERNAME,
+        key: process.env.SAUCE_ACCESS_KEY,
         logLevel: 'silent'
     };
 }
