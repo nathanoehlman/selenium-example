@@ -18,11 +18,13 @@ if (process.env.TRAVIS) {
     console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
 
     var options = { desiredCapabilities: {
-            browserName: 'chrome',
-            version: '27',
-            platform: 'XP',
+            browserName: BROWSERNAME,
+            version: BROWSERVERSION,
+            platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run single page test using webdriverjs/Selenium.'
+            name: 'Run single page test using webdriverjs/Selenium.',
+            user: env.SAUCE_USERNAME,
+            key: env.SAUCE_ACCESS_KEY,
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -30,8 +32,6 @@ if (process.env.TRAVIS) {
         // use with sauce connect:
         host: 'localhost',
         port: 4445,
-        user: env.SAUCE_USERNAME,
-        key: env.SAUCE_ACCESS_KEY,
         logLevel: 'silent'
     };
 }

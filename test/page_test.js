@@ -8,16 +8,15 @@ if (process.env.TRAVIS) {
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';
-    console.log('BROWSERNAME: %s', BROWSERNAME || '-');
-    console.log('BROWSERVERSION: %s', BROWSERVERSION || '-');
-    console.log('BROWSERPLATFORM: %s', BROWSERPLATFORM || '-');
 
     var options = { desiredCapabilities: {
             browserName: BROWSERNAME,
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run web app test using webdriverjs/Selenium.'
+            name: 'Run web app test using webdriverjs/Selenium.',
+            user: env.SAUCE_USERNAME,
+            key: env.SAUCE_ACCESS_KEY
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -25,8 +24,6 @@ if (process.env.TRAVIS) {
         // use with sauce connect:
         host: 'localhost',
         port: 4445,
-        user: env.SAUCE_USERNAME,
-        key: env.SAUCE_ACCESS_KEY,
         logLevel: 'silent'
     };
 }
