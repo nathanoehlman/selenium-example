@@ -14,9 +14,7 @@ if (process.env.TRAVIS) {
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run web app test using webdriverjs/Selenium.',
-            user: env.SAUCE_USERNAME,
-            key: env.SAUCE_ACCESS_KEY
+            name: 'Run web app test using webdriverjs/Selenium.'
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -24,6 +22,8 @@ if (process.env.TRAVIS) {
         // use with sauce connect:
         host: 'localhost',
         port: 4445,
+        user: process.env.SAUCE_USERNAME,
+        key: process.env.SAUCE_ACCESS_KEY,
         logLevel: 'silent'
     };
 }

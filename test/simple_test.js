@@ -44,7 +44,7 @@ else
     };
 }
 
-describe('Run single page test using webdriverjs/Selenium.', function() {
+describe('Run a simple test using webdriverjs/Selenium.', function() {
 
     var client = {};
 
