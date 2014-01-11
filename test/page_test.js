@@ -2,17 +2,12 @@ var chai = require('chai');
 var assert = chai.assert, // TDD
     expect = chai.expect, // BDD
     webdriverjs = require('webdriverjs');
-var env = GLOBAL.env = {}
 
 var options = {};
-console.log('TRAVIS: %s', env.TRAVIS || 'no');
-console.log('SELENIUM_HOST: %s', env.SELENIUM_HOST || '-');
-console.log('SELENIUM_PORT: %s', env.SELENIUM_PORT || '-');
-
-if (env.TRAVIS) {
-    var BROWSERNAME = env._BROWSER || env.BROWSER || 'chrome';
-    var BROWSERVERSION = env._VERSION || env.VERSION || '*';
-    var BROWSERPLATFORM = env._PLATFORM || env.PLATFORM || 'Linux';
+if (process.env.TRAVIS) {
+    var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
+    var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
+    var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';
     console.log('BROWSERNAME: %s', BROWSERNAME || '-');
     console.log('BROWSERVERSION: %s', BROWSERVERSION || '-');
     console.log('BROWSERPLATFORM: %s', BROWSERPLATFORM || '-');
