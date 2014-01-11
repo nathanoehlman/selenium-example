@@ -1,62 +1,106 @@
-var expect = require('chai').expect,
-    webdriverjs = require("webdriverjs"),
-    client = webdriverjs.remote();
+var chai = require('chai');
+var assert = chai.assert, // TDD
+    expect = chai.expect, // BDD
+    webdriverjs = require('webdriverjs');
+var options = {
+    desiredCapabilities: {
+        browserName: 'chrome'
+    }
+};
 
-describe('Run Selenium tests', function() {
+describe('Run some Selenium tests', function() {
+
+    var client = {};
 
     before(function(done) {
-        // Add some helper commands
-        client.addCommand('hasText', function(selector, text, callback) {
-            this.getText(selector, function(result) {
-                expect(result.value).to.have.string(text);
-                callback();
-            });
-        });
-        client.addCommand('waitUntilVisible', function(element, callback) {
-            var self = this;
-            function checkElement() {
-                self.isVisible(element, function(result) {
-                    if (result === true) {
-                        callback();
-                    } else {
-                        setTimeout(checkElement, 500);
-                    }
-                });
-            }
-            checkElement();
-        });
-        done();
+        // console.log('--before--');
+
+        //client = webdriverjs.remote({ desiredCapabilities: {browserName: 'phantomjs'} });
+        client = webdriverjs.remote(options);
+
+        // start the session
+        client.init()
+        .call(done);
+    });
+
+    after(function(done) {
+        //console.log('--after--');
+        client.end()
+        .call(done);
     });
 
     beforeEach(function(done) {
+        //console.log('--beforeEach--');
+        this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
-        client.init();
-        client.url('http://localhost:3000', done);
+        client.url('http://localhost:3000')
+        .call(done);
     });
     
-    it('should be able to navigate betwen the pages', function(done) {
-        this.timeout(10000);
-        client
-            .hasText('#title', 'Library')
-            .click('#authors')
-            .waitUntilVisible("#authorList", function() {
-                client
-                    .hasText('#author1', 'Patrick Rothfuss')
-                    .click('#back')
-                    .waitUntilVisible('#books', function() {
-                        client
-                            .click('#books')
-                            .waitUntilVisible('#bookList', function() {
-                                client.hasText('book1', "Wise Man's Fear");
-                                done();
-                            });
-                    });
-            });        
+    it('checks the title only - using TDD style check', function(done) {
+        // uses helper command getTitle()
+        client.getTitle(function(err, result) {
+            assert.strictEqual(err, null);
+            //console.log('1 Title was: ' + result);
+            assert.strictEqual(result, 'Library'); // TDD
+        })
+        .call(done);
     });
-        
-    afterEach(function(done) {
-        client.end();
-        done();
+
+    it('checks the title only, a second time - but using BDD style check', function(done) {
+        client
+        .getTitle(function(err, result) {
+            if (err) throw err;
+            //console.log('1 Title was: ' + result);
+            expect(result).to.have.string('Library'); // BDD
+        })
+        // uses underlying protocol function title()
+        .title(function(err, result) {
+            if (err) throw err;
+            //console.log('2 Title was: ' + result.value);
+            expect(result.value).to.have.string('Library'); // BDD
+        })
+        .call(done);;
+    });
+
+    it('should be able to navigate between the pages', function(done) {
+        client
+        .getTitle(function(err, result) {
+            assert.strictEqual(err, null);
+            //console.log('Title was: ' + result);
+            assert.strictEqual(result, 'Library');
+        })
+        .click('#authors')
+        .getTitle(function(err, title) {
+            assert.strictEqual(err, null);
+            assert.strictEqual(title, 'Authors');
+        })
+        .getText('#author1', function(err, result) {
+            if (err) throw err;
+            //console.log('#author1: ' + result);
+            expect(result).to.have.string('Patrick Rothfuss');
+        })
+        .click('#back')
+        .getTitle(function(err, result) {
+            assert.strictEqual(err, null);
+            assert.strictEqual(result, 'Library');
+        })
+        .click('#books')
+        .getTitle(function(err, result) {
+            assert.strictEqual(err, null);
+            assert.strictEqual(result, 'Books');
+        })
+        .getText('#book1', function(err, result) {
+            assert.strictEqual(err, null);
+            //console.log('#book1: ' + result);
+            assert.strictEqual(result, 'Wise Man\'s Fear');
+        })
+        .click('#back')
+        .getTitle(function(err, result) {
+            assert.strictEqual(err, null);
+            assert.strictEqual(result, 'Library');
+        })
+        .call(done);
     });
 
 });

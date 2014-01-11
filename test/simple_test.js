@@ -1,36 +1,39 @@
-var expect = require('chai').expect,
-    webdriverjs = require("webdriverjs"),
-    client = webdriverjs.remote();
+var assert = require('chai').assert,
+    expect = require('chai').expect,
+    webdriverjs = require('webdriverjs'),
+    client = webdriverjs.remote({ desiredCapabilities: {browserName: 'chrome'} });
 
 describe('Run Selenium tests', function() {
 
     before(function(done) {
-        // Add some helper commands
+        // Add a helper command
         client.addCommand('hasText', function(selector, text, callback) {
-            this.getText(selector, function(result) {
-                expect(result.value).to.have.string(text);
-                callback();
-            });
+            this.getText(selector, function(err, result) {
+                assert.strictEqual(err, null);
+                assert.strictEqual(result, text); // TDD
+                expect(result).to.have.string(text); // BDD
+            })
+            .call(callback);
         });
-        done();
+
+        client.init()
+        .call(done);
     });
 
     beforeEach(function(done) {
+        this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
-        client.init();
-        client.url('http://localhost:3000', done);
+        client.url('http://localhost:3000')
+        .call(done);
     });
-    
+
     it('should be able to view the home page', function(done) {
-        this.timeout(10000);
-        client.hasText('#title', 'Library');        
-        done();
-        
+        client.hasText('#title', 'Library')
+        .call(done);
     });
-        
-    afterEach(function(done) {
-        client.end();
-        done();
+
+    after(function(done) {
+        client.end().call(done);
     });
 
 });
