@@ -16,8 +16,6 @@ if (process.env.TRAVIS) {
     console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
 
     var options = { desiredCapabilities: {
-            username: process.env.SAUCE_USERNAME,
-            access-key: process.env.SAUCE_ACCESS_KEY,
             browserName: BROWSERNAME,
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,

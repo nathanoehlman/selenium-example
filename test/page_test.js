@@ -14,7 +14,7 @@ if (process.env.TRAVIS) {
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run web app test using webdriverjs/Selenium.'
+            name: 'Run web app \'page test\' using webdriverjs/Selenium.'
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -37,7 +37,7 @@ else
 }
 
 
-describe('Run web app test using webdriverjs/Selenium.', function() {
+describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
 
     var client = {};
 
