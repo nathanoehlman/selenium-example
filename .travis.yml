@@ -1,16 +1,22 @@
 language: node_js
 
 node_js:
-  - '0.10'
+    - '0.10'
+
+install:
+    - echo "$(date +%H:%M:%S.%N) - install begin"
+    - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+    - java -jar selenium-server-standalone-2.39.0.jar &
+    - sleep 10
+    - echo "$(date +%H:%M:%S.%N) - install end"
 
 before_script:
-  - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-  - java -jar selenium-server-standalone-2.39.0.jar &
-  - sudo npm install
-  - node app.js
+    #- sudo npm install - is automatically executed
+    - node app.js
 
 script:
-  - mocha --reporter min
+    - echo "$(date +%H:%M:%S.%N) - script begin"
+    - mocha --reporter min
 
 #addons:
 #  sauce_connect: true
