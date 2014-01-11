@@ -1,7 +1,10 @@
-h1#title= title
-p Welcome to the Library
+extends layout
 
-p
-    a#authors(href='/authors') Authors
-p
-    a#books(href='/books') Books
+block content
+    h1#title= title
+    p Welcome to the #{title}
+
+    p
+        a#authors(href='/authors') Authors
+    p
+        a#books(href='/books') Books
