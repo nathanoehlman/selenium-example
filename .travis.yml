@@ -3,15 +3,15 @@ language: node_js
 node_js:
     - '0.10'
 
-install:
-    - echo "$(date +%H:%M:%S.%N) - install begin"
+before_install:
+    - echo "$(date +%H:%M:%S.%N) - before_install begin"
     - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
     - java -jar selenium-server-standalone-2.39.0.jar &
     - sleep 10
-    - echo "$(date +%H:%M:%S.%N) - install end"
+    - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 before_script:
-    #- sudo npm install - is automatically executed
+    #- sudo npm install - is automatically executed when install is missing
     - node app.js
 
 script:
