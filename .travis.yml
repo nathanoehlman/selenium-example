@@ -3,21 +3,26 @@ language: node_js
 node_js:
     - '0.10'
 
-# before_install:
-#     - echo "$(date +%H:%M:%S.%N) - before_install begin"
-#     - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-#     - java -jar selenium-server-standalone-2.39.0.jar &
-#     - sleep 10
-#     - echo "$(date +%H:%M:%S.%N) - before_install end"
+before_install:
+    # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
+    # start this before installation to let the server be up and ready without extra waiting time.
+    - echo "$(date +%H:%M:%S.%N) - before_install begin"
+    - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+    - java -jar selenium-server-standalone-2.39.0.jar &
+    #- sleep 10
+    - echo "$(date +%H:%M:%S.%N) - before_install end"
+
 
 before_script:
-#     #- sudo npm install - is automatically executed when install is missing
-#     - node app.js &
+    #- sudo npm install - is automatically executed when install is missing
+    # node app.js is started in postinstall of npm install
+    # - node app.js &
     # check that the web app is running:
     - wget http://localhost:3000/authors
     - cat authors
 
 #script:
+# automatically runs npm test - therefore the call to mocha is described in package.json
 #    - echo "$(date +%H:%M:%S.%N) - script begin"
 #    - mocha --reporter spec
 
