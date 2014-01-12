@@ -24,7 +24,7 @@ if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
         port: 4445,
         user: process.env.SAUCE_USERNAME,
         key: process.env.SAUCE_ACCESS_KEY,
-        logLevel: 'silent'
+        logLevel: 'verbose'
     };
 }
 else
