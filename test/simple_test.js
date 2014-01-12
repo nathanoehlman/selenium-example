@@ -6,8 +6,10 @@ var client = {};
 
 console.log('USER: %s', process.env.USER || '-');
 console.log('TRAVIS: %s', process.env.TRAVIS || 'no');
+console.log('TEST_RUN_LOCAL: %s', process.env.TEST_RUN_LOCAL || '-');
 
-if (process.env.TRAVIS) {
+
+if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';

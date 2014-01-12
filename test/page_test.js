@@ -4,7 +4,7 @@ var assert = chai.assert, // TDD
     webdriverjs = require('webdriverjs');
 
 var options = {};
-if (process.env.TRAVIS) {
+if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';

@@ -1,6 +1,7 @@
 {
     "name": "selenium-example", 
     "version": "1.0.0", 
+    "license": "MIT",
     "private": true, 
     "dependencies": {
         "express": "*", 
@@ -13,6 +14,7 @@
     },
     "scripts": {
         "postinstall" : "node app.js &",
+        "start" : "node app.js &",
         "test": "mocha --reporter spec --timeout 10000 test/simple_test.js test/page_test.js"
     }
 }

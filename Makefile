@@ -27,7 +27,7 @@ else
 endif
 
 test: launchselenium launchapp
-	mocha test/simple_test.js test/page_test.js
+	npm test
 
 
 .PHONY: all test launchapp launchselenium
