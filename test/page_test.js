@@ -3,6 +3,10 @@ var assert = chai.assert, // TDD
     expect = chai.expect, // BDD
     webdriverjs = require('webdriverjs');
 
+process.on('uncaughtException', function(e) {
+    console.log(require('util').inspect(e, {showHidden:true}));
+});
+
 var options = {};
 if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';

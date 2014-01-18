@@ -5,13 +5,14 @@ node_js:
 
 before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
-    # start this before installation to let the server be up and ready without extra waiting time.
     - echo "$(date +%H:%M:%S.%N) - before_install begin"
+    # download selenium server
     - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-    - java -jar selenium-server-standalone-2.39.0.jar &
     # Download and install the chromedriver to be able to execute the browser tests locally
-    - curl http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo mv chromedriver /usr/local/bin && sudo chmod +rx /usr/local/bin/chromedriver
-    #- sleep 10
+    - curl http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
+    # start this before installation to let the server be up and ready without extra waiting time.
+    - java -jar selenium-server-standalone-2.39.0.jar -Dwebdriver.chrome.driver=./chromedriver &
+    - sleep 10
     - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 
