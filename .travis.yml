@@ -3,17 +3,17 @@ language: node_js
 node_js:
     - '0.10'
 
-before_install:
-    # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
-    - echo "$(date +%H:%M:%S.%N) - before_install begin"
-    # download selenium server
-    - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-    # Download and install the chromedriver to be able to execute the browser tests locally
-    - curl http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
-    # start this before installation to let the server be up and ready without extra waiting time.
-    - java -jar selenium-server-standalone-2.39.0.jar -Dwebdriver.chrome.driver=./chromedriver &
-    - sleep 10
-    - echo "$(date +%H:%M:%S.%N) - before_install end"
+# before_install:
+#     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
+#     - echo "$(date +%H:%M:%S.%N) - before_install begin"
+#     # download selenium server
+#     - curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+#     # Download and install the chromedriver to be able to execute the browser tests locally
+#     - curl http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
+#     # start this before installation to let the server be up and ready without extra waiting time.
+#     - java -jar selenium-server-standalone-2.39.0.jar -Dwebdriver.chrome.driver=./chromedriver &
+#     - sleep 10
+#     - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 
 before_script:
@@ -29,8 +29,8 @@ script:
 # automatically runs `npm test` - therefore the call to mocha is located in package.json
     - echo "$(date +%H:%M:%S.%N) - script begin"
     #- mocha --reporter spec
-    - export TEST_RUN_LOCAL=true && npm test
-    - echo "Run the same tests as above, but using the remote browser."
+    #- export TEST_RUN_LOCAL=true && npm test
+    #- echo "Run the same tests as above, but using the remote browser."
     - export TEST_RUN_LOCAL=false && npm test
 
 addons:
