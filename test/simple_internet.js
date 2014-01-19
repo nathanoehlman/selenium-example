@@ -1,10 +1,9 @@
 var assert = require('chai').assert,
-    expect = require('chai').expect,
     webdriverjs = require('webdriverjs');
 var env = GLOBAL.env = {};
 var client = {};
 
-console.log('process.env.TRAVIS: %s', process.env.TRAVIS || '-');
+console.log('process.env.TRAVIS: %s', process.env.TRAVIS || 'no');
 console.log('TEST_RUN_LOCAL: %s', process.env.TEST_RUN_LOCAL || '-');
 
 process.on('uncaughtException', function(e) {
@@ -27,7 +26,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run a \'simple test\' using webdriverjs/Selenium.'
+            name: 'Run a \'simple internet\' test using webdriverjs/Selenium.'
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -52,23 +51,13 @@ else
     };
 }
 
-describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
+describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function() {
 
     var client = {};
 
     before(function(done) {
         this.timeout(10000);
         client = webdriverjs.remote(options);
-
-        // Add a helper command
-        client.addCommand('hasText', function(selector, text, callback) {
-            this.getText(selector, function(err, result) {
-                assert.strictEqual(err, null);
-                assert.strictEqual(result, text); // TDD
-                expect(result).to.have.string(text); // BDD
-            })
-            .call(callback);
-        });
 
         client.init()
         .call(done);
@@ -77,13 +66,18 @@ describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
     beforeEach(function(done) {
         this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
-        client.url('http://localhost:3000')
+        client.url('https://google.com')
         .call(done);
     });
 
-    it('should be able to view the home page', function(done) {
-        client.hasText('#title', 'Library')
-        .call(done);
+    it('should be able to view page on internet, checks the title only using TDD style check', function(done) {
+            // uses helper command getTitle()
+            client.getTitle(function(err, result) {
+                assert.strictEqual(err, null);
+                //console.log('Title was: ' + result);
+                assert.strictEqual(result, 'Google'); // TDD
+            })
+            .call(done);
     });
 
     after(function(done) {
