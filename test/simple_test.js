@@ -11,16 +11,21 @@ process.on('uncaughtException', function(e) {
     console.log(require('util').inspect(e, {showHidden:true}));
 });
 
-console.log('(process.env.TRAVIS == true): %s', (process.env.TRAVIS == true));
-console.log('(process.env.TRAVIS === true): %s', (process.env.TRAVIS === true));
-console.log('(process.env.TEST_RUN_LOCAL === false): %s', (process.env.TEST_RUN_LOCAL === false));
-console.log('(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TEST_RUN_LOCAL || false));
-console.log('((process.env.TEST_RUN_LOCAL || false) === false): %s', ((process.env.TEST_RUN_LOCAL || false) === false));
-console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)));
-console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', ((process.env.TRAVIS === true) && (process.env.TEST_RUN_LOCAL === false)));
+
+console.log('process.env.TRAVIS: %s', process.env.TRAVIS);
+console.log('(process.env.TRAVIS == \'true\'): %s', (process.env.TRAVIS == 'true'));
+console.log('(process.env.TRAVIS === \'true\'): %s', (process.env.TRAVIS === 'true'));
+
+//console.log('(process.env.TRAVIS == true): %s', (process.env.TRAVIS == true));
+//console.log('(process.env.TRAVIS === true): %s', (process.env.TRAVIS === true));
+//console.log('(process.env.TEST_RUN_LOCAL === false): %s', (process.env.TEST_RUN_LOCAL === false));
+//console.log('(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TEST_RUN_LOCAL || false));
+//console.log('((process.env.TEST_RUN_LOCAL || false) === false): %s', ((process.env.TEST_RUN_LOCAL || false) === false));
+//console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)));
+//console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', ((process.env.TRAVIS === true) && (process.env.TEST_RUN_LOCAL === false)));
 
 //if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
-if (process.env.TRAVIS === true) {
+if (process.env.TRAVIS) {
     console.log('running tests on SauceLabs using sauce connect...');
 
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
