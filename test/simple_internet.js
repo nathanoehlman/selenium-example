@@ -12,21 +12,28 @@ process.on('uncaughtException', function(e) {
 
 if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) {
     console.log('running tests on SauceLabs using sauce connect...');
-    console.log('TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')');
 
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';
+    var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
+    var BUILDNUMBER = process.env.TRAVIS_BUILD_NUMBER || 'unknown-buildnumber';
+    var TUNNELIDENTIFIER = 'TRAVIS #' + BUILDNUMBER + ' (' + BUILDID + ')';
+
     console.log('BROWSERNAME: ' + BROWSERNAME);
     console.log('BROWSERVERSION: ' + BROWSERVERSION);
     console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
+    console.log('BUILDID: ' + BUILDID);
+    console.log('TUNNELIDENTIFIER: ' + TUNNELIDENTIFIER);
 
     var options = { desiredCapabilities: {
             browserName: BROWSERNAME,
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run a \'simple internet\' test using webdriverjs/Selenium.'
+            name: 'Run a \'simple internet\' test using webdriverjs/Selenium.',
+            build: BUILDID,
+            'tunnel-identifier': TUNNELIDENTIFIER
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
