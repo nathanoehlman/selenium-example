@@ -10,7 +10,8 @@
     "devDependencies": {
         "mocha": "*",
         "chai": "*",
-        "webdriverjs": "*"
+        "webdriverjs": "*",
+        "saucelabs": "~0.1.1"
     },
     "scripts": {
         "postinstall" : "node app.js &",
