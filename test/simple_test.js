@@ -16,10 +16,7 @@ console.log('process.env.TRAVIS: %s', process.env.TRAVIS);
 console.log('(process.env.TRAVIS === \'true\'): %s', (process.env.TRAVIS === 'true'));
 
 console.log('(process.env.TEST_RUN_LOCAL === false): %s', (process.env.TEST_RUN_LOCAL === 'false'));
-console.log('(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TEST_RUN_LOCAL || false));
-console.log('((process.env.TEST_RUN_LOCAL || false) === false): %s', ((process.env.TEST_RUN_LOCAL || false) !== 'true'));
-console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', ((process.env.TRAVIS === 'true') && !(process.env.TEST_RUN_LOCAL || false)));
-console.log('process.env.TRAVIS === true && !(process.env.TEST_RUN_LOCAL || false): %s', ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL === 'false')));
+console.log('process.env.TRAVIS === true && (process.env.TEST_RUN_LOCAL !== true): %s', ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')));
 
 //if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
 if ((process.env.TRAVIS === 'true')) {
@@ -38,7 +35,7 @@ if ((process.env.TRAVIS === 'true')) {
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run a \'simple test\' using webdriverjs/Selenium.',
+            name: 'Run a \'simple test\' using webdriverjs/Selenium.'
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
@@ -89,7 +86,7 @@ describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
         this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
         //client.url('http://localhost:3000')
-        client.url('http://localhost')
+        client.url('https://google.com')
         .call(done);
     });
 

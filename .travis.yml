@@ -21,9 +21,8 @@ before_script:
     # node app.js is started in postinstall of npm install
     # - node app.js &
     # check that the web app is running:
-    #- wget http://localhost:3000/authors
-    - wget http://localhost || true
-    - wget http://localhost/authors || true
+    - wget http://localhost:3000/authors || true
+    # show the beginning of the file - the whole file is not displayed within TRAVIS (because line is too long?)
     - cat authors | cut -d'/' -f1
 
 script:
