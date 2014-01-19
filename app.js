@@ -11,7 +11,8 @@ var express = require('express')
 var app = express();
 
 // Configuration
-app.set('port', process.env.PORT || 80);
+//app.set('port', process.env.PORT || 3000);
+app.set('port', 80);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -23,7 +24,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
     app.use(express.errorHandler());
 }
 

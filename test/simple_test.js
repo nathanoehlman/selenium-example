@@ -89,7 +89,7 @@ describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
         this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
         //client.url('http://localhost:3000')
-        client.url('http://localhost:80')
+        client.url('http://localhost')
         .call(done);
     });
 

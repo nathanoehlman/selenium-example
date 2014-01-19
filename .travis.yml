@@ -22,7 +22,8 @@ before_script:
     # - node app.js &
     # check that the web app is running:
     #- wget http://localhost:3000/authors
-    - wget http://localhost:80/authors
+    - wget http://localhost || true
+    - wget http://localhost/authors || true
     - cat authors | cut -d'/' -f1
 
 script:
