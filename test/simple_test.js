@@ -64,7 +64,7 @@ describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
     var client = {};
 
     before(function(done) {
-        this.timeout(10000);
+        this.timeout(60000);
         client = webdriverjs.remote(options);
 
         // Add a helper command
@@ -82,7 +82,7 @@ describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
     });
 
     beforeEach(function(done) {
-        this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
+        this.timeout(30000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
         client.url('http://localhost:3000')
         .call(done);
