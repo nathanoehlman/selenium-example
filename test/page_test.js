@@ -8,7 +8,8 @@ process.on('uncaughtException', function(e) {
 });
 
 var options = {};
-if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
+//if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
+if (process.env.TRAVIS) {
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';

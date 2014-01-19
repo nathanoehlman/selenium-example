@@ -11,12 +11,17 @@ process.on('uncaughtException', function(e) {
     console.log(require('util').inspect(e, {showHidden:true}));
 });
 
+console.log('(process.env.TRAVIS == true): %s', (process.env.TRAVIS == true));
+console.log('(process.env.TRAVIS === true): %s', (process.env.TRAVIS === true));
+console.log('(process.env.TEST_RUN_LOCAL === false): %s', (process.env.TEST_RUN_LOCAL === false));
+console.log('(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TEST_RUN_LOCAL || false));
+console.log('((process.env.TEST_RUN_LOCAL || false) === false): %s', ((process.env.TEST_RUN_LOCAL || false) === false));
 console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)));
 console.log('process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false): %s', ((process.env.TRAVIS === true) && (process.env.TEST_RUN_LOCAL === false)));
 
 //if (process.env.TRAVIS && !(process.env.TEST_RUN_LOCAL || false)) {
-if ((process.env.TRAVIS === true) && (process.env.TEST_RUN_LOCAL === false)) {
-    console.log('running test on SauceLabs using sauce connect...');
+if (process.env.TRAVIS === true) {
+    console.log('running tests on SauceLabs using sauce connect...');
 
     var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
@@ -45,11 +50,13 @@ if ((process.env.TRAVIS === true) && (process.env.TEST_RUN_LOCAL === false)) {
 }
 else
 {
-    console.log('running test locally...');
+    console.log('running tests locally...');
     options = {
         desiredCapabilities: {
             browserName: 'chrome'
-        }
+        },
+        host: 'localhost',
+        port: 4444
     };
 }
 
