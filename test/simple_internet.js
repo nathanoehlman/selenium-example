@@ -17,8 +17,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';
     var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
-    var BUILDNUMBER = process.env.TRAVIS_BUILD_NUMBER || 'unknown-buildnumber';
-    var TUNNELIDENTIFIER = 'TRAVIS #' + BUILDNUMBER + ' (' + BUILDID + ')';
+    var TUNNELIDENTIFIER = process.env.TRAVIS_JOB_NUMBER || 'unknown-jobnumber';
 
     console.log('BROWSERNAME: ' + BROWSERNAME);
     console.log('BROWSERVERSION: ' + BROWSERVERSION);
