@@ -21,8 +21,8 @@ before_script:
     # node app.js is started in postinstall of npm install
     # - node app.js &
     # check that the web app is running:
-    - wget http://localhost:3000/authors
-    - cat authors
+    #- wget http://localhost:3000/authors
+    - wget http://localhost:80/authors
     - cat authors | cut -d'/' -f1
 
 script:
