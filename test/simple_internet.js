@@ -62,11 +62,15 @@ else
 
 describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function() {
 
+    before(function(done){
+            client = webdriverjs.remote(options);
+            client.init(done);
+    });
+
     it('should be able to view page on internet, checks the title only using TDD style check', function(done) {
         this.timeout(60000); // some time is needed for the browser start up, on my system 3000 should work, too.
 
-        var client = webdriverjs.remote(options);
-        client.init()
+        client
         .url('https://google.com')
         // uses helper command getTitle()
         .getTitle(function(err, result) {
@@ -74,8 +78,11 @@ describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function(
             console.log('Title was: ' + result);
             assert.strictEqual(result, 'Google');
         })
-        .end()
         .call(done);
+    });
+
+    after(function(done) {
+        client.end(done);
     });
 
 });

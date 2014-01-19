@@ -20,12 +20,12 @@ describe('my webdriverjs tests', function(){
             .url('https://github.com/')
             .getElementSize('.header-logo-wordmark', function(err, result) {
                 assert.equal(null, err);
-                assert.strictEqual(result.height , 32);
+                assert.strictEqual(result.height, 32);
                 assert.strictEqual(result.width, 89);
             })
             .getTitle(function(err, title) {
                 assert.equal(null, err);
-                assert.strictEqual(title,'GitHub · Build software better, together.');
+                assert.strictEqual(title, 'GitHub · Build software better, together.');
             })
             .getCssProperty('a[href="/plans"]', 'color', function(err, result){
                 assert.equal(null, err);
