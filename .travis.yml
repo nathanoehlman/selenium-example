@@ -12,6 +12,8 @@ before_install:
     - curl http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
     # start this before installation to let the server be up and ready without extra waiting time.
     - java -jar selenium-server-standalone-2.39.0.jar -Dwebdriver.chrome.driver=./chromedriver &
+    # install phantomjs, too:
+    - sudo apt-get install phantomjs
     - sleep 10
     - echo "$(date +%H:%M:%S.%N) - before_install end"
 

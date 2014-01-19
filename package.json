@@ -16,6 +16,6 @@
     "scripts": {
         "postinstall" : "node app.js &",
         "start" : "node app.js &",
-        "test": "mocha --reporter spec --timeout 60000 test/simple_internet.js test/simple_test.js test/page_test.js"
+        "test": "mocha --reporter spec --timeout 60000 test/example_from_webdriverjs.js test/simple_internet.js test/simple_test.js test/page_test.js"
     }
 }

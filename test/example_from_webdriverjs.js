@@ -1,7 +1,9 @@
+// for this test phantomjs must be installed, e.g.
+// sudo apt-get install phantomjs
 var chai = require('chai'),
     assert = chai.assert,
     expect = chai.expect,
-    webdriverjs = require('../index');
+    webdriverjs = require('webdriverjs');
 
 describe('my webdriverjs tests', function(){
 
