@@ -18,12 +18,14 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
     var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';
     var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
     var TUNNELIDENTIFIER = process.env.TRAVIS_JOB_NUMBER || 'unknown-jobnumber';
+    var SELENIUMVERSION = '2.39.0';
 
     console.log('BROWSERNAME: ' + BROWSERNAME);
     console.log('BROWSERVERSION: ' + BROWSERVERSION);
     console.log('BROWSERPLATFORM: ' + BROWSERPLATFORM);
     console.log('BUILDID: ' + BUILDID);
     console.log('TUNNELIDENTIFIER: ' + TUNNELIDENTIFIER);
+    console.log('SELENIUMVERSION: ' + SELENIUMVERSION);
 
     var options = { desiredCapabilities: {
             browserName: BROWSERNAME,
@@ -32,7 +34,8 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
             tags: ['examples'],
             name: 'Run a \'simple internet\' test using webdriverjs/Selenium.',
             build: BUILDID,
-            'tunnel-identifier': TUNNELIDENTIFIER
+            'tunnel-identifier': TUNNELIDENTIFIER,
+            'selenium-version': SELENIUMVERSION
         },
         // for w/o sauce connect
         //      host: 'ondemand.saucelabs.com',
