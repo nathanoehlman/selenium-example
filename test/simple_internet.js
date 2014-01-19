@@ -59,35 +59,20 @@ else
 
 describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function() {
 
-    var client = {};
-
-    before(function(done) {
-        this.timeout(10000);
-        client = webdriverjs.remote(options);
-
-        client.init()
-        .call(done);
-    });
-
-    beforeEach(function(done) {
-        this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
-        // Navigate to the URL for each test
-        client.url('https://google.com')
-        .call(done);
-    });
-
     it('should be able to view page on internet, checks the title only using TDD style check', function(done) {
-            // uses helper command getTitle()
-            client.getTitle(function(err, result) {
-                assert.strictEqual(err, null);
-                //console.log('Title was: ' + result);
-                assert.strictEqual(result, 'Google'); // TDD
-            })
-            .call(done);
-    });
+        this.timeout(10000); // some time is needed for the browser start up, on my system 3000 should work, too.
 
-    after(function(done) {
-        client.end().call(done);
+        var client = webdriverjs.remote(options);
+        client.init()
+        .url('https://google.com')
+        // uses helper command getTitle()
+        .getTitle(function(err, result) {
+            assert.strictEqual(err, null);
+            console.log('Title was: ' + result);
+            assert.strictEqual(result, 'Google');
+        })
+        .end()
+        .call(done);
     });
 
 });
