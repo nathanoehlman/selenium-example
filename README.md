@@ -1,9 +1,9 @@
 Selenium example
 ================
 
-<!---
-Not working so far 8-(
-[![Build Status](https://travis-ci.org/leutloff/selenium-example.png)](https://travis-ci.org/leutloff/selenium-example)-->
+[![Build Status](https://travis-ci.org/leutloff/selenium-example.png)](https://travis-ci.org/leutloff/selenium-example)
+[![Dependencies](https://gemnasium.com/leutloff/selenium-example.png)](https://gemnasium.com/leutloff/selenium-example)
+
 
 This project provides two complete simple examples written in JavaScript ([node.js](http://nodejs.org/)) 
 using the Web Application Test Framework [Selenium](http://docs.seleniumhq.org/projects/webdriver/). 
