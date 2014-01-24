@@ -4,13 +4,13 @@
     "license": "MIT",
     "private": true, 
     "dependencies": {
-        "express": "*", 
-        "jade": ">= 0.0.1"
+        "express": "~3.4.8", 
+        "jade": "~1.1.5"
     },
     "devDependencies": {
-        "mocha": "*",
-        "chai": "*",
-        "webdriverjs": "*",
+        "mocha": "~1.17.1",
+        "chai": "~1.8.1",
+        "webdriverjs": "camme/webdriverjs#issue-141",
         "saucelabs": "~0.1.1"
     },
     "scripts": {
