@@ -66,7 +66,6 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
         // console.log('--before--');
         this.timeout(60000);
 
-        //client = webdriverjs.remote({ desiredCapabilities: {browserName: 'phantomjs'} });
         client = webdriverjs.remote(options);
 
         // start the session

@@ -3,8 +3,8 @@ var assert = require('chai').assert,
 var env = GLOBAL.env = {};
 var client = {};
 
-console.log('process.env.TRAVIS: %s', process.env.TRAVIS || 'no');
-console.log('TEST_RUN_LOCAL: %s', process.env.TEST_RUN_LOCAL || '-');
+//console.log('process.env.TRAVIS: %s', process.env.TRAVIS || 'no');
+//console.log('TEST_RUN_LOCAL: %s', process.env.TEST_RUN_LOCAL || '-');
 
 process.on('uncaughtException', function(e) {
     console.log(require('util').inspect(e, {showHidden:true}));

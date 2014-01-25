@@ -8,14 +8,15 @@
         "jade": "~1.1.5"
     },
     "devDependencies": {
-        "mocha": "~1.17.1",
         "chai": "~1.8.1",
-        "webdriverjs": ">=1.3.1",
-        "saucelabs": "~0.1.1"
+        "mocha": "~1.17.1",
+        "saucelabs": "~0.1.1",
+        "util": "~0.10.2",
+        "webdriverjs": ">=1.3.1"
     },
     "scripts": {
         "postinstall" : "node app.js &",
         "start" : "node app.js &",
-        "test": "mocha --reporter spec --timeout 60000 test/example_from_webdriverjs.js test/simple_internet.js test/simple_test.js test/page_test.js"
+        "test": "mocha --reporter spec --timeout 60000 test/simple_internet.js test/simple_test.js test/page_test.js"
     }
 }
