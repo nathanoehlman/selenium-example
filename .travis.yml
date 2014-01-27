@@ -43,6 +43,7 @@ env:
     - secure: "EvQvxbIQRYDF2NvRDlC8tLeoKabuhi9D+d9y89jsVniyAkMd6HXzU6N+/rsKWnLSYg4fDzadHvXUN+ge9BP1JwMFsH1OOCifBCQQLfnrZQ1phnQEhwl8LDQHVZbRv9Wsk474+NcGkGiDOrjUjbadR6YCrisPt3CHAB1XQw4zIzE="
     - secure: "sAGCSM9rCbANjWeeLnF8i2y450c4EPGUuhlOeFCxnlisduDkiQ6sZgusOlL2NiPQwmHTCcVNn7reBcuUGg1NZJfRt4NMju9OtqzS/JLk2RW9+J3zUkDrx5tQhaivWlThakRAIpNeHpCBEL9tWk68pDZw+Bfc1e1Jh4H3ji91KtI="
 
+# Use underscore for spaces in platfrom and browser names
   matrix:
     - _BROWSER: "firefox"
       _PLATFORM: "Linux"

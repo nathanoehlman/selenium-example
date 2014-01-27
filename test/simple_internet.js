@@ -13,9 +13,9 @@ process.on('uncaughtException', function(e) {
 if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) {
     console.log('running tests on SauceLabs using sauce connect...');
 
-    var BROWSERNAME = process.env._BROWSER || process.env.BROWSER || 'chrome';
+    var BROWSERNAME = (process.env._BROWSER || process.env.BROWSER || 'chrome').replace(/_/g,' ');
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
-    var BROWSERPLATFORM = process.env._PLATFORM || process.env.PLATFORM || 'Linux';
+    var BROWSERPLATFORM = (process.env._PLATFORM || process.env.PLATFORM || 'Linux').replace(/_/g,' ');
     var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
     var TUNNELIDENTIFIER = process.env.TRAVIS_JOB_NUMBER || 'unknown-jobnumber';
     var SELENIUMVERSION = '2.39.0';
