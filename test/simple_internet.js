@@ -18,7 +18,8 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
     var BROWSERPLATFORM = (process.env._PLATFORM || process.env.PLATFORM || 'Linux').replace(/_/g,' ');
     var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
     var TUNNELIDENTIFIER = process.env.TRAVIS_JOB_NUMBER || 'unknown-jobnumber';
-    var SELENIUMVERSION = '2.41.0';
+    // select selenium version - for available versions see https://saucelabs.com/docs/additional-config#selenium-version
+    var SELENIUMVERSION = '2.40.0';
 
     console.log('BROWSERNAME: ' + BROWSERNAME);
     console.log('BROWSERVERSION: ' + BROWSERVERSION);
