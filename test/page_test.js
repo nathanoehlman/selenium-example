@@ -19,7 +19,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
     var BROWSERPLATFORM = (process.env._PLATFORM || process.env.PLATFORM || 'Linux').replace(/_/g,' ');
     var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
     var TUNNELIDENTIFIER = process.env.TRAVIS_JOB_NUMBER || 'unknown-jobnumber';
-    var SELENIUMVERSION = '2.39.0';
+    var SELENIUMVERSION = '2.41.0';
 
 //    console.log('BROWSERNAME: ' + BROWSERNAME);
 //    console.log('BROWSERVERSION: ' + BROWSERVERSION);
@@ -81,7 +81,7 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
 
     beforeEach(function(done) {
         //console.log('--beforeEach--');
-        this.timeout(30000); // some time is needed for the browser start up, on my system 3000 should work, too.
+        this.timeout(60000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
         client.url('http://localhost:3000')
         .call(done);
