@@ -1,13 +1,14 @@
 
-SELENIUMJAR=selenium-server-standalone-2.39.0.jar
-SELENIUMPID=$(shell ps -ef | grep  'selenium-server-standalone-2.39.0.jar$$' | cut -d ' ' -f 2-3)
+SELENIUMVERSION=2.41
+SELENIUMJAR=selenium-server-standalone-$(SELENIUMVERSION).0.jar
+SELENIUMPID=$(shell ps -ef | grep  'selenium-server-standalone-$(SELENIUMVERSION).0.jar$$' | cut -d ' ' -f 2-3)
 APPPID=$(shell ps -ef | grep  'node app.js$$' | cut -d ' ' -f 2-3)
 
 all: test
 
 $(SELENIUMJAR):
 	@echo "Getting selenium server $(SELENIUMJAR) ..."
-	curl -O http://selenium.googlecode.com/files/$(SELENIUMJAR)
+	curl -O http://selenium-release.storage.googleapis.com/$(SELENIUMVERSION)/$(SELENIUMJAR)
 
 launchselenium: $(SELENIUMJAR)
 ifneq (,$(SELENIUMPID))
@@ -15,7 +16,7 @@ ifneq (,$(SELENIUMPID))
 else
 	@echo "Starting selenium server $(SELENIUMJAR) ..."
 	java -jar $(SELENIUMJAR) &
-
+	sleep 5
 endif
 
 launchapp:
