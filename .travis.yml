@@ -14,7 +14,7 @@ before_install:
     - java -jar selenium-server-standalone-2.41.0.jar -Dwebdriver.chrome.driver=./chromedriver &
     # install phantomjs, too:
     - sudo apt-get install phantomjs
-    - sleep 10
+    - sleep 15
     - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 
@@ -47,13 +47,13 @@ env:
   matrix:
     - _BROWSER: "firefox"
       _PLATFORM: "Linux"
-      _VERSION: "28"
+      _VERSION: "29"
     - _BROWSER: "firefox"
       _PLATFORM: "Windows_7"
-      _VERSION: "28"
+      _VERSION: "29"
     - _BROWSER: "chrome"
       _PLATFORM: "Windows_7"
-      _VERSION: "33"
+      _VERSION: "34"
     - _BROWSER: "internet_explorer"
       _PLATFORM: "Windows_8.1"
       _VERSION: "11"
