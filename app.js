@@ -17,7 +17,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico')); - add static-favicon to dependencies, too
 //app.use(express.logger('dev')); replaced by morgan
-app.use(require('body-parser')());
+//deprecated: app.use(require('body-parser')());
+app.use(bodyParser.urlencoded());
 app.use(require('method-override')());
 
 // Routes

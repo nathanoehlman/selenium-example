@@ -50,7 +50,7 @@ env:
       _VERSION: "37"
     - _BROWSER: "firefox"
       _PLATFORM: "Linux"
-      _VERSION: "dev"
+      _VERSION: "beta"
     - _BROWSER: "firefox"
       _PLATFORM: "Windows_7"
       _VERSION: "37"
