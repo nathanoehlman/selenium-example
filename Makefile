@@ -1,5 +1,5 @@
 
-SELENIUMVERSION=2.41
+SELENIUMVERSION=2.45
 SELENIUMJAR=selenium-server-standalone-$(SELENIUMVERSION).0.jar
 SELENIUMPID=$(shell ps -ef | grep  'selenium-server-standalone-$(SELENIUMVERSION).0.jar$$' | cut -d ' ' -f 2-3)
 APPPID=$(shell ps -ef | grep  'node app.js$$' | cut -d ' ' -f 2-3)

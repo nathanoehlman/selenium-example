@@ -24,7 +24,7 @@ For locally running tests:
         sudo apt-get install nodejs -y
         curl https://npmjs.org/install.sh > install-npm.sh && sudo sh install-npm.sh
 - Install the chromedriver for your system, e.g. for Linux
-        curl http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip > chromedriver_linux64.zip 
+        curl https://chromedriver.storage.googleapis.com/index.html?path=2.15/chromedriver_linux64.zip > chromedriver_linux64.zip 
         unzip chromedriver_linux64.zip 
         sudo mv chromedriver /usr/local/bin
         sudo chmod +rx /usr/local/bin/chromedriver
@@ -35,8 +35,8 @@ For locally running tests:
 - Then exceute
         make 
   or install and launch selenium server, e.g.
-        curl -O http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
-        java -jar selenium-server-standalone-2.39.0.jar &
+        curl -O https://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar
+        java -jar selenium-server-standalone-2.45.0.jar &
   and start the tests with npm
         npm test
 
