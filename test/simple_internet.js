@@ -72,7 +72,7 @@ describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function(
         this.timeout(60000); // some time is needed for the browser start up, on my system 3000 should work, too.
 
         client
-        .url('https://google.com')
+        .url('https://www.google.com')
         // uses helper command getTitle()
         .getTitle(function(err, result) {
             assert.strictEqual(err, null);
