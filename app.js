@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path');
+var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 
 var app = express();
@@ -18,7 +19,7 @@ app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico')); - add static-favicon to dependencies, too
 //app.use(express.logger('dev')); replaced by morgan
 //deprecated: app.use(require('body-parser')());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.json())
 app.use(require('method-override')());
 
 // Routes
