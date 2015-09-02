@@ -122,7 +122,7 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
             assert.strictEqual(result, 'Library');
         })
         .click('#authors')
-        .pause(1000) // wait required for Win10/edge, TODO reduce time to wait
+        .pause(100) // wait required for Win10/edge, TODO reduce time to wait, 1000 working
         .getTitle(function(err, title) {
             assert.strictEqual(err, null);
             assert.strictEqual(title, 'Authors');
