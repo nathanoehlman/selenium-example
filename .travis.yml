@@ -6,7 +6,7 @@ node_js:
 before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
     - echo "$(date +%H:%M:%S.%N) - before_install begin"
-    # download selenium server
+    # download selenium server - when updating the jar: adapt the SELENIUMVERSION in the test files, too
     - curl -O http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.1.jar
     # Download and install the chromedriver to be able to execute the browser tests locally
     - curl https://chromedriver.storage.googleapis.com/2.19/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
