@@ -122,7 +122,7 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
             assert.strictEqual(result, 'Library');
         })
         .click('#authors')
-        .pause(100) // wait required for Win10/edge, TODO reduce time to wait, 1000 working
+        .pause(1000) // wait required for Win10/edge, TODO reduce time to wait, 1000 working, 100 not; rework to use waitFor from webdriverio 3.x
         .getTitle(function(err, title) {
             assert.strictEqual(err, null);
             assert.strictEqual(title, 'Authors');
