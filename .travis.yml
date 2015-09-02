@@ -7,11 +7,11 @@ before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
     - echo "$(date +%H:%M:%S.%N) - before_install begin"
     # download selenium server
-    - curl -O http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar
+    - curl -O http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.1.jar
     # Download and install the chromedriver to be able to execute the browser tests locally
-    - curl https://chromedriver.storage.googleapis.com/2.15/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
+    - curl https://chromedriver.storage.googleapis.com/2.19/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
     # start this before installation to let the server be up and ready without extra waiting time.
-    - java -jar selenium-server-standalone-2.45.0.jar -Dwebdriver.chrome.driver=./chromedriver &
+    - java -jar selenium-server-standalone-2.47.1.jar -Dwebdriver.chrome.driver=./chromedriver &
     # install phantomjs, too:
     - sudo apt-get install phantomjs
     - sleep 15
