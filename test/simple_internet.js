@@ -64,7 +64,7 @@ else
 describe('Run a \'simple internet\' test using webdriverio/Selenium.', function() {
 
     before(function(done){
-        this.timeout(6000);// 2000 too fast
+        this.timeout(12000);// 6000 too fast on windows systems
         client = webdriverio.remote(options);
         client.init().call(done);
     });
