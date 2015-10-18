@@ -121,7 +121,7 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
             assert.strictEqual(title, 'Library');
         })
         .click('#authors')
-        //.waitForExist('#author1', 1000)
+        .waitForExist('#back', 1000)
         .getTitle().then(function(title) {
             //console.log('Title was: ' + title);
             assert.strictEqual(title, 'Authors');
@@ -131,13 +131,13 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
             expect(result).to.have.string('Patrick Rothfuss');
         })
         .click('#back')
-        //.waitForExist('#books', 1000)
+        .waitForExist('#books', 1000)
         .getTitle().then(function(title) {
             //console.log('Title was: ' + title);
             assert.strictEqual(title, 'Library');
         })
         .click('#books')
-        //.waitForExist('#book1', 1000)
+        .waitForExist('#back', 1000)
         .getTitle().then(function(title) {
             //console.log('Title was: ' + title);
             assert.strictEqual(title, 'Books');
@@ -147,7 +147,7 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
             assert.strictEqual(result, 'Wise Man\'s Fear');
         })
         .click('#back')
-        //.waitForExist('#author1', 1000)
+        .waitForExist('#authors', 1000)
         .getTitle().then(function(title) {
             //console.log('Title was: ' + title);
             assert.strictEqual(title, 'Library');
