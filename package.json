@@ -16,7 +16,7 @@
         "mocha": "~2.3.3",
         "saucelabs": "~1.0.1",
         "util": "~0.10.3",
-        "webdriverjs": "~1.7.5"
+        "webdriverio": "~3.2.5"
     },
     "scripts": {
         "postinstall" : "node app.js &",

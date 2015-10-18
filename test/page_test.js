@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert, // TDD
     expect = chai.expect, // BDD
-    webdriverjs = require('webdriverjs');
+    webdriverio = require('webdriverio');
 
 process.on('uncaughtException', function(e) {
     console.log(require('util').inspect(e, {showHidden:true}));
@@ -33,7 +33,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run web app \'page test\' using webdriverjs/Selenium.',
+            name: 'Run web app \'page test\' using webdriverio/Selenium.',
             build: BUILDID,
             'tunnel-identifier': TUNNELIDENTIFIER,
             'selenium-version': SELENIUMVERSION
@@ -59,7 +59,7 @@ else
 }
 
 
-describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
+describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
 
     var client = {};
 
@@ -67,7 +67,7 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
         // console.log('--before--');
         this.timeout(60000);
 
-        client = webdriverjs.remote(options);
+        client = webdriverio.remote(options);
 
         // start the session
         client.init()
@@ -89,21 +89,20 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
     });
     
     it('checks the title only - using TDD style check', function(done) {
-        // uses helper command getTitle()
-        client.getTitle(function(err, result) {
-            assert.strictEqual(err, null);
-            //console.log('1 Title was: ' + result);
-            assert.strictEqual(result, 'Library'); // TDD
+        // uses property getTitle()
+        client
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Library'); // TDD
         })
         .call(done);
     });
 
     it('checks the title only, a second time - but using BDD style check', function(done) {
         client
-        .getTitle(function(err, result) {
-            if (err) throw err;
-            //console.log('1 Title was: ' + result);
-            expect(result).to.have.string('Library'); // BDD
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            expect(title).to.have.string('Library'); // BDD
         })
         // uses underlying protocol function title()
         .title(function(err, result) {
@@ -116,41 +115,41 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
 
     it('should be able to navigate between the pages', function(done) {
         client
-        .getTitle(function(err, result) {
-            assert.strictEqual(err, null);
-            //console.log('Title was: ' + result);
-            assert.strictEqual(result, 'Library');
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Library');
         })
         .click('#authors')
-        .pause(1000) // wait required for Win10/edge, TODO reduce time to wait, 1000 working, 100 not; rework to use waitFor from webdriverio 3.x
-        .getTitle(function(err, title) {
-            assert.strictEqual(err, null);
+        //.waitForExist('#author1', 1000)
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
             assert.strictEqual(title, 'Authors');
         })
-        .getText('#author1', function(err, result) {
-            if (err) throw err;
+        .getText('#author1').then(function(result) {
             //console.log('#author1: ' + result);
             expect(result).to.have.string('Patrick Rothfuss');
         })
         .click('#back')
-        .getTitle(function(err, result) {
-            assert.strictEqual(err, null);
-            assert.strictEqual(result, 'Library');
+        //.waitForExist('#books', 1000)
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Library');
         })
         .click('#books')
-        .getTitle(function(err, result) {
-            assert.strictEqual(err, null);
-            assert.strictEqual(result, 'Books');
+        //.waitForExist('#book1', 1000)
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Books');
         })
-        .getText('#book1', function(err, result) {
-            assert.strictEqual(err, null);
+        .getText('#book1').then(function(result) {
             //console.log('#book1: ' + result);
             assert.strictEqual(result, 'Wise Man\'s Fear');
         })
         .click('#back')
-        .getTitle(function(err, result) {
-            assert.strictEqual(err, null);
-            assert.strictEqual(result, 'Library');
+        //.waitForExist('#author1', 1000)
+        .getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Library');
         })
         .call(done);
     });

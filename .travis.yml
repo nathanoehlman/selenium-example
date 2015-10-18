@@ -5,13 +5,14 @@ node_js:
 
 before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
-    - echo "$(date +%H:%M:%S.%N) - before_install begin"
     # download selenium server - when updating the jar: adapt the SELENIUMVERSION in the test files, too
-    - curl -O http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.1.jar
+    # Lastest version: http://www.seleniumhq.org/download/
+    - curl -O http://selenium-release.storage.googleapis.com/2.48/selenium-server-standalone-2.48.2.jar
     # Download and install the chromedriver to be able to execute the browser tests locally
-    - curl https://chromedriver.storage.googleapis.com/2.19/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
+    # Latest version: https://sites.google.com/a/chromium.org/chromedriver/downloads
+    - curl https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
     # start this before installation to let the server be up and ready without extra waiting time.
-    - java -jar selenium-server-standalone-2.47.1.jar -Dwebdriver.chrome.driver=./chromedriver &
+    - java -jar selenium-server-standalone-2.48.2.jar -Dwebdriver.chrome.driver=./chromedriver &
     # install phantomjs, too:
     - sudo apt-get install phantomjs
     #- sleep 15 works only on Win7/chrome44 and Win7/ie11
@@ -30,7 +31,6 @@ before_script:
 
 script:
 # automatically runs `npm test` - therefore the call to mocha is located in package.json
-    - echo "$(date +%H:%M:%S.%N) - script begin"
     #- mocha --reporter spec
     #- export TEST_RUN_LOCAL=true && npm test
     #- echo "Run the same tests as above, but using the remote browser."

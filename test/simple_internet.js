@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    webdriverjs = require('webdriverjs');
+    webdriverio = require('webdriverio');
 var env = GLOBAL.env = {};
 var client = {};
 
@@ -11,7 +11,7 @@ process.on('uncaughtException', function(e) {
 });
 
 if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) {
-    console.log('running tests on SauceLabs using sauce connect...');
+    console.log('running tests (simple internet) on SauceLabs using sauce connect...');
 
     var BROWSERNAME = (process.env._BROWSER || process.env.BROWSER || 'chrome').replace(/_/g,' ');
     var BROWSERVERSION = process.env._VERSION || process.env.VERSION || '*';
@@ -33,7 +33,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run a \'simple internet\' test using webdriverjs/Selenium.',
+            name: 'Run a \'simple internet\' test using webdriverio/Selenium.',
             build: BUILDID,
             'tunnel-identifier': TUNNELIDENTIFIER,
             'selenium-version': SELENIUMVERSION
@@ -51,7 +51,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
 }
 else
 {
-    console.log('running tests locally...');
+    console.log('running tests (simple internet) locally...');
     options = {
         desiredCapabilities: {
             browserName: 'chrome'
@@ -61,11 +61,12 @@ else
     };
 }
 
-describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function() {
+describe('Run a \'simple internet\' test using webdriverio/Selenium.', function() {
 
     before(function(done){
-            client = webdriverjs.remote(options);
-            client.init(done);
+        this.timeout(6000);// 2000 too fast
+        client = webdriverio.remote(options);
+        client.init().call(done);
     });
 
     it('should be able to view page on internet, checks the title only using TDD style check', function(done) {
@@ -73,17 +74,16 @@ describe('Run a \'simple internet\' test using webdriverjs/Selenium.', function(
 
         client
         .url('https://www.google.com')
-        // uses helper command getTitle()
-        .getTitle(function(err, result) {
-            assert.strictEqual(err, null);
-            console.log('Title was: ' + result);
-            assert.strictEqual(result, 'Google');
+        // uses property getTitle()
+        .getTitle().then(function(title) {
+            console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Google');
         })
         .call(done);
     });
 
     after(function(done) {
-        client.end(done);
+        client.end().call(done);
     });
 
 });

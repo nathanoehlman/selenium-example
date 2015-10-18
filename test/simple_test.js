@@ -1,6 +1,6 @@
 var assert = require('chai').assert,
     expect = require('chai').expect,
-    webdriverjs = require('webdriverjs');
+    webdriverio = require('webdriverio');
 var env = GLOBAL.env = {};
 var client = {};
 
@@ -12,7 +12,7 @@ process.on('uncaughtException', function(e) {
 });
 
 if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) {
-    console.log('running tests on SauceLabs using sauce connect...');
+    console.log('running tests (simple_test) on SauceLabs using sauce connect...');
     console.log('TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')');
 
     var BROWSERNAME = (process.env._BROWSER || process.env.BROWSER || 'chrome').replace(/_/g,' ');
@@ -34,7 +34,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
             version: BROWSERVERSION,
             platform: BROWSERPLATFORM,
             tags: ['examples'],
-            name: 'Run a \'simple test\' using webdriverjs/Selenium.',
+            name: 'Run a \'simple test\' using webdriverio/Selenium.',
             build: BUILDID,
             'tunnel-identifier': TUNNELIDENTIFIER,
             'selenium-version': SELENIUMVERSION
@@ -52,7 +52,7 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
 }
 else
 {
-    console.log('running tests locally...');
+    console.log('running tests (simple_test) locally...');
     options = {
         desiredCapabilities: {
             browserName: 'chrome'
@@ -62,24 +62,11 @@ else
     };
 }
 
-describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
-
-    var client = {};
+describe('Run a \'simple test\' using webdriverio/Selenium.', function() {
 
     before(function(done) {
         this.timeout(60000);
-        client = webdriverjs.remote(options);
-
-        // Add a helper command
-        client.addCommand('hasText', function(selector, text, callback) {
-            this.getText(selector, function(err, result) {
-                assert.strictEqual(err, null);
-                assert.strictEqual(result, text); // TDD
-                expect(result).to.have.string(text); // BDD
-            })
-            .call(callback);
-        });
-
+        client = webdriverio.remote(options);
         client.init()
         .call(done);
     });
@@ -92,12 +79,17 @@ describe('Run a \'simple test\' using webdriverjs/Selenium.', function() {
     });
 
     it('should be able to view the home page', function(done) {
-        client.hasText('#title', 'Library')
+        client.getTitle().then(function(title) {
+            //console.log('Title was: ' + title);
+            assert.strictEqual(title, 'Library'); // TDD
+            expect(title).to.have.string('Library'); // BDD
+        })
         .call(done);
     });
 
     after(function(done) {
-        client.end().call(done);
+        client.end()
+        .call(done);
     });
 
 });
