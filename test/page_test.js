@@ -19,8 +19,8 @@ if ((process.env.TRAVIS === 'true') && (process.env.TEST_RUN_LOCAL !== 'true')) 
     var BROWSERPLATFORM = (process.env._PLATFORM || process.env.PLATFORM || 'Linux').replace(/_/g,' ');
     var BUILDID = process.env.TRAVIS_BUILD_ID || 'unknown-buildid';
     var TUNNELIDENTIFIER = process.env.TRAVIS_JOB_NUMBER || 'unknown-jobnumber';
-    // select selenium version - for available versions see https://saucelabs.com/docs/additional-config#selenium-version
-    var SELENIUMVERSION = '2.45.0';
+    // select selenium version - for available versions see https://docs.saucelabs.com/reference/test-configuration/#specifying-a-selenium-version
+    var SELENIUMVERSION = '2.47.1';
 
 //    console.log('BROWSERNAME: ' + BROWSERNAME);
 //    console.log('BROWSERVERSION: ' + BROWSERVERSION);
@@ -122,6 +122,7 @@ describe('Run web app \'page test\' using webdriverjs/Selenium.', function() {
             assert.strictEqual(result, 'Library');
         })
         .click('#authors')
+        .pause(1000) // wait required for Win10/edge, TODO reduce time to wait, 1000 working, 100 not; rework to use waitFor from webdriverio 3.x
         .getTitle(function(err, title) {
             assert.strictEqual(err, null);
             assert.strictEqual(title, 'Authors');
