@@ -114,6 +114,7 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
     });
 
     it('should be able to navigate between the pages', function(done) {
+        this.timeout(12000);
         client
         .getTitle().then(function(title) {
             //console.log('Title was: ' + title);
