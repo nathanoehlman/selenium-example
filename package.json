@@ -12,7 +12,7 @@
         "serve-static": "~1.10.0"
     },
     "devDependencies": {
-        "chai": "~3.3.0",
+        "chai": "~3.4.0",
         "mocha": "~2.3.3",
         "saucelabs": "~1.0.1",
         "util": "~0.10.3",

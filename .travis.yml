@@ -13,11 +13,11 @@ before_install:
     - curl https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
     # start this before installation to let the server be up and ready without extra waiting time.
     - java -jar selenium-server-standalone-2.48.2.jar -Dwebdriver.chrome.driver=./chromedriver &
-    # install phantomjs, too:
+    # install phantomjs, too: - TODO: try the existing one from the CI environment
     - sudo apt-get install phantomjs
     #- sleep 15 works only on Win7/chrome44 and Win7/ie11
     - sleep 15
-    - echo "$(date +%H:%M:%S.%N) - before_install end"
+    #- echo "$(date +%H:%M:%S.%N) - before_install end"
 
 
 before_script:
