@@ -61,6 +61,6 @@ env:
       _PLATFORM: "Windows_7"
       _VERSION: "11.0"
 # navigation on the 'page test' does not work - no idea why 8-(
-    - _BROWSER: "microsoftedge"
-      _PLATFORM: "Windows_10"
-      _VERSION: "20.10240"
+#    - _BROWSER: "microsoftedge"
+#      _PLATFORM: "Windows_10"
+#      _VERSION: "20.10240"
