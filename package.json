@@ -4,19 +4,19 @@
     "license": "MIT",
     "private": true, 
     "dependencies": {
-        "body-parser": "~1.14.1",
-        "errorhandler": "~1.4.2",
-        "express": "~4.13.3",
+        "body-parser": "~1.14.2",
+        "errorhandler": "~1.4.3",
+        "express": "~4.13.4",
         "jade": "~1.11.0",
         "method-override": "~2.3.5",
-        "serve-static": "~1.10.0"
+        "serve-static": "~1.10.2"
     },
     "devDependencies": {
-        "chai": "~3.4.0",
-        "mocha": "~2.3.3",
+        "chai": "~3.5.0",
+        "mocha": "~2.4.5",
         "saucelabs": "~1.0.1",
         "util": "~0.10.3",
-        "webdriverio": "~3.2.5"
+        "webdriverio": "~3.4.0"
     },
     "scripts": {
         "postinstall" : "node app.js &",

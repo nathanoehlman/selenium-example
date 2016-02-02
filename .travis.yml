@@ -7,12 +7,12 @@ before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
     # download selenium server - when updating the jar: adapt the SELENIUMVERSION in the test files, too
     # Lastest version: http://www.seleniumhq.org/download/
-    - curl -O http://selenium-release.storage.googleapis.com/2.48/selenium-server-standalone-2.48.2.jar
+    - curl -O https://selenium-release.storage.googleapis.com/2.50/selenium-server-standalone-2.50.1.jar
     # Download and install the chromedriver to be able to execute the browser tests locally
     # Latest version: https://sites.google.com/a/chromium.org/chromedriver/downloads
     - curl https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip > chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo cp chromedriver /usr/local/bin && sudo chmod +rx chromedriver /usr/local/bin/chromedriver
     # start this before installation to let the server be up and ready without extra waiting time.
-    - java -jar selenium-server-standalone-2.48.2.jar -Dwebdriver.chrome.driver=./chromedriver &
+    - java -jar selenium-server-standalone-2.50.1.jar -Dwebdriver.chrome.driver=./chromedriver &
     # install phantomjs, too: - TODO: try the existing one from the CI environment
     - sudo apt-get install phantomjs
     #- sleep 15 works only on Win7/chrome44 and Win7/ie11
@@ -50,17 +50,17 @@ env:
   matrix:
     - _BROWSER: "firefox"
       _PLATFORM: "Linux"
-      _VERSION: "41.0"
+      _VERSION: "43.0"
     - _BROWSER: "firefox"
       _PLATFORM: "Windows_7"
-      _VERSION: "41.0"
+      _VERSION: "43.0"
     - _BROWSER: "chrome"
       _PLATFORM: "Windows_7"
-      _VERSION: "46.0"
+      _VERSION: "47.0"
     - _BROWSER: "internet_explorer"
       _PLATFORM: "Windows_7"
       _VERSION: "11.0"
 # navigation on the 'page test' does not work - no idea why 8-(
-#    - _BROWSER: "microsoftedge"
-#      _PLATFORM: "Windows_10"
-#      _VERSION: "20.10240"
+    - _BROWSER: "microsoftedge"
+      _PLATFORM: "Windows_10"
+      _VERSION: "20.10240"
