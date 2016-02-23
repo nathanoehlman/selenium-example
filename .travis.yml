@@ -5,8 +5,8 @@ node_js:
 
 before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
-    # download selenium server - when updating the jar: adapt the SELENIUMVERSION in the test files, too
-    # Lastest version: http://www.seleniumhq.org/download/
+    # download selenium server - when updating the jar: adapt the SELENIUMVERSION in the test files, too.
+    # Latest version: http://www.seleniumhq.org/download/
     - curl -O https://selenium-release.storage.googleapis.com/2.50/selenium-server-standalone-2.50.1.jar
     # Download and install the chromedriver to be able to execute the browser tests locally
     # Latest version: https://sites.google.com/a/chromium.org/chromedriver/downloads
@@ -48,13 +48,13 @@ env:
   matrix:
     - _BROWSER: "firefox"
       _PLATFORM: "Linux"
-      _VERSION: "43.0"
+      _VERSION: "44.0"
     - _BROWSER: "firefox"
       _PLATFORM: "Windows_7"
-      _VERSION: "43.0"
+      _VERSION: "44.0"
     - _BROWSER: "chrome"
       _PLATFORM: "Windows_7"
-      _VERSION: "47.0"
+      _VERSION: "48.0"
     - _BROWSER: "internet_explorer"
       _PLATFORM: "Windows_7"
       _VERSION: "11.0"
