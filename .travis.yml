@@ -1,7 +1,11 @@
 language: node_js
 
 node_js:
-    - '0.10'
+    - "node"
+    - "4.1"
+    - "5.7"
+    # last working:
+    - "0.10"
 
 before_install:
     # download and start selenium server - thought that it is not necessary, but without the website is not available within SauceLabs.
@@ -28,7 +32,8 @@ before_script:
     - cat authors | cut -d'/' -f1
 
 script:
-# automatically runs `npm test` - therefore the call to mocha is located in package.json
+    - which node && node -v && npm version || true
+    # automatically runs `npm test` - therefore the call to mocha is located in package.json
     #- mocha --reporter spec
     #- export TEST_RUN_LOCAL=true && npm test
     #- echo "Run the same tests as above, but using the remote browser."
@@ -41,7 +46,6 @@ env:
   global:
     - secure: "EvQvxbIQRYDF2NvRDlC8tLeoKabuhi9D+d9y89jsVniyAkMd6HXzU6N+/rsKWnLSYg4fDzadHvXUN+ge9BP1JwMFsH1OOCifBCQQLfnrZQ1phnQEhwl8LDQHVZbRv9Wsk474+NcGkGiDOrjUjbadR6YCrisPt3CHAB1XQw4zIzE="
     - secure: "sAGCSM9rCbANjWeeLnF8i2y450c4EPGUuhlOeFCxnlisduDkiQ6sZgusOlL2NiPQwmHTCcVNn7reBcuUGg1NZJfRt4NMju9OtqzS/JLk2RW9+J3zUkDrx5tQhaivWlThakRAIpNeHpCBEL9tWk68pDZw+Bfc1e1Jh4H3ji91KtI="
-
 # Use platform configurator https://docs.saucelabs.com/reference/platforms-configurator
 # Get the names and versions from the node.js tab in the section "COPY CODE".
 # Use underscore for spaces in platform and browser names - they are replaced inside js.
@@ -59,6 +63,6 @@ env:
       _PLATFORM: "Windows_7"
       _VERSION: "11.0"
 # navigation on the 'page test' does not work - no idea why 8-(
-#    - _BROWSER: "microsoftedge"
-#      _PLATFORM: "Windows_10"
-#      _VERSION: "20.10240"
+    - _BROWSER: "microsoftedge"
+      _PLATFORM: "Windows_10"
+      _VERSION: "20.10240"
