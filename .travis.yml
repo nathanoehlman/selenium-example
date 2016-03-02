@@ -19,7 +19,7 @@ before_install:
     - java -jar selenium-server-standalone-2.50.1.jar -Dwebdriver.chrome.driver=./chromedriver &
     #- sleep 15 works only on Win7/chrome44 and Win7/ie11
     - sleep 15
-    #- echo "$(date +%H:%M:%S.%N) - before_install end"
+    - echo "$(date +%H:%M:%S.%N) - before_install end"
 
 
 before_script:
@@ -32,6 +32,8 @@ before_script:
     - cat authors | cut -d'/' -f1
 
 script:
+    - echo "$(date +%H:%M:%S.%N) - script begin"
+    - sleep 15
     - which node && node -v && npm version || true
     # automatically runs `npm test` - therefore the call to mocha is located in package.json
     #- mocha --reporter spec
