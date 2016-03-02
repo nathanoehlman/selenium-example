@@ -65,14 +65,14 @@ else
 describe('Run a \'simple test\' using webdriverio/Selenium.', function() {
 
     before(function(done) {
-        this.timeout(60000);
+        this.timeout(300000);
         client = webdriverio.remote(options);
         client.init()
         .call(done);
     });
 
     beforeEach(function(done) {
-        this.timeout(60000); // some time is needed for the browser start up, on my system 3000 should work, too.
+        this.timeout(300000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
         client.url('http://localhost:3000')
         .call(done);

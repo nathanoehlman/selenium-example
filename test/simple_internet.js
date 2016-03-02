@@ -64,13 +64,13 @@ else
 describe('Run a \'simple internet\' test using webdriverio/Selenium.', function() {
 
     before(function(done){
-        this.timeout(12000);// 6000 too fast on windows systems
+        this.timeout(300000);// 6000 too fast on windows systems
         client = webdriverio.remote(options);
         client.init().call(done);
     });
 
     it('should be able to view page on internet, checks the title only using TDD style check', function(done) {
-        this.timeout(60000); // some time is needed for the browser start up, on my system 3000 should work, too.
+        this.timeout(300000); // some time is needed for the browser start up, on my system 3000 should work, too.
 
         client
         .url('https://www.google.com')

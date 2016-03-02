@@ -65,7 +65,7 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
 
     before(function(done) {
         // console.log('--before--');
-        this.timeout(60000);
+        this.timeout(300000);
 
         client = webdriverio.remote(options);
 
@@ -82,7 +82,7 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
 
     beforeEach(function(done) {
         //console.log('--beforeEach--');
-        this.timeout(60000); // some time is needed for the browser start up, on my system 3000 should work, too.
+        this.timeout(300000); // some time is needed for the browser start up, on my system 3000 should work, too.
         // Navigate to the URL for each test
         client.url('http://localhost:3000')
         .call(done);
@@ -121,7 +121,7 @@ describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
             assert.strictEqual(title, 'Library');
         })
         .click('#authors')
-        .waitForExist('#back', 1000)
+        .waitForExist('#back', 10000)
         .getTitle().then(function(title) {
             //console.log('Title was: ' + title);
             assert.strictEqual(title, 'Authors');
