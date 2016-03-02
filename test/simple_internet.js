@@ -62,6 +62,7 @@ else
 }
 
 describe('Run a \'simple internet\' test using webdriverio/Selenium.', function() {
+    this.timeout(300000);// 6000 too fast on windows systems
 
     before(function(done){
         this.timeout(300000);// 6000 too fast on windows systems

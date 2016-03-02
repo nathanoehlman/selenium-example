@@ -60,7 +60,7 @@ else
 
 
 describe('Run web app \'page test\' using webdriverio/Selenium.', function() {
-
+    this.timeout(300000);
     var client = {};
 
     before(function(done) {
