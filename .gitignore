@@ -1,2 +1,5 @@
 .DS_STORE
 node_modules
+*.jar
+chromedriver
+chromedriver_linux64.zip
